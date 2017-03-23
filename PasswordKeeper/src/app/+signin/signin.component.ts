@@ -19,16 +19,13 @@ export class SigninComponent implements OnInit {
   signInWithRosefire(): void {
     Rosefire.signIn(environment.rosefireRegistryToken, (error, rfUser: RosefireUser) => {
       if (error) {
-        // User not logged in!
         console.error(error);
         return;
       }
-      //console.log("Rosefire authoentication complete. Rosefire user: ",rfUser);
       this.afAuth.login(rfUser.token, {
         method: AuthMethods.CustomToken,
         provider: AuthProviders.Custom,
       }).then((auth: FirebaseAuthState) => {
-        //console.log("Firebase authentication is done too. Firebase uid:", auth.uid);
         this.router.navigate(['/']);
       });
     });

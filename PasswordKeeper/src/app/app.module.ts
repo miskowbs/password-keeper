@@ -10,11 +10,16 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '@angular/material';
 import { MainComponent } from './+main/main.component';
 import { SigninComponent } from './+signin/signin.component';
+import { PasswordDialogComponent } from './password-dialog/password-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    SigninComponent
+    SigninComponent,
+    PasswordDialogComponent
+  ],
+  entryComponents: [
+    PasswordDialogComponent
   ],
   imports: [
     BrowserModule,
