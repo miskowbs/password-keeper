@@ -1,20 +1,14 @@
 $horz-card-padding: 30px;
 md-card {
-  padding: 0;
   md-card-title {
-    background-color: #089889;
     padding: 15px $horz-card-padding;
-    margin: 0;
     h2 {
       margin: 0;
-      color: white;
       font-weight: normal;
     }
   }
   md-card-content {
     padding: $horz-card-padding;
-    color: rgba(0,0,0,0.7);
-    font-size: 18px;
     button {
         background-color: #800000;
         color: white;
