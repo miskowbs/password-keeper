@@ -2,6 +2,7 @@ import { Component, OnInit, Input, trigger, style, state, transition, animate } 
 import { Password } from "../password.model";
 
 import * as firebase from 'firebase';
+import { MdSnackBar } from "@angular/material";
 
 @Component({
   selector: 'password-display-card',
@@ -27,7 +28,7 @@ export class PasswordDisplayCardComponent implements OnInit {
     return this.isExpanded ? "expanded" : "collapsed";
   }
 
-  constructor() { }
+  constructor(private snackBar: MdSnackBar) { }
 
   ngOnInit() {
   }
@@ -37,7 +38,9 @@ export class PasswordDisplayCardComponent implements OnInit {
   }
 
   remove(): void {
-    console.log("remove", this.password);
+    this.snackBar.open('Password Removed', 'Dismiss', {
+      duration: 3000
+    });
     firebase.database().ref().child(this.firebasePath).child(this.password.$key).remove();
   }
 
