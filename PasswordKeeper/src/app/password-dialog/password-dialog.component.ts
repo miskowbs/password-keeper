@@ -1,7 +1,12 @@
 import { Password } from './../password.model';
 import { Component, OnInit } from '@angular/core';
 import { MdDialogRef } from "@angular/material";
+import * as firebase from 'firebase';
 
+
+interface DialogData {
+  firebasePath: string;
+}
 @Component({
   selector: 'app-password-dialog',
   templateUrl: './password-dialog.component.html',
@@ -9,9 +14,11 @@ import { MdDialogRef } from "@angular/material";
 })
 export class PasswordDialogComponent implements OnInit {
   formPassword: Password;
+  firebasePath: string;
 
   constructor(private dialogRef: MdDialogRef<PasswordDialogComponent>) {
-    var data = this.dialogRef.config.data;
+    var data: DialogData = this.dialogRef.config.data;
+    this.firebasePath = data.firebasePath;
     console.log("Received the data", data);
     this.formPassword = new Password();
   }
@@ -21,7 +28,7 @@ export class PasswordDialogComponent implements OnInit {
 
   onSubmit() {
     try {
-      console.log("TODO. Push", this.formPassword);
+      firebase.database().ref().child(this.firebasePath).push(this.formPassword);
       this.dialogRef.close();
 
     } catch (e) {

@@ -6,11 +6,11 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: "AIzaSyAp3Q242SFZEH4TkKoBl0Nif5dNaT0YKoI",
-    authDomain: "zhangl-password-keeper.firebaseapp.com",
-    databaseURL: "https://zhangl-password-keeper.firebaseio.com",
-    storageBucket: "zhangl-password-keeper.appspot.com",
-    messagingSenderId: "272636241167"
+    apiKey: "AIzaSyBvP8bwiAMBXDJXmSiFBGcwjbU3vQY2zJ0",
+    authDomain: "password-keeper-dc62e.firebaseapp.com",
+    databaseURL: "https://password-keeper-dc62e.firebaseio.com",
+    storageBucket: "password-keeper-dc62e.appspot.com",
+    messagingSenderId: "123379637572"
   },
-  rosefireRegistryToken: "685908dc-1b75-4f83-869d-cde6af91c8c4"
+  rosefireRegistryToken: "e8475011-afcf-4569-91fb-e2df4e9813b9"
 };
