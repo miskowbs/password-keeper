@@ -49,7 +49,6 @@ export class MainComponent implements OnInit {
   }
 
   showAddPasswordDialog() {
-    console.log("TODO: Show a dialog");
     var dialogConfig = new MdDialogConfig();
     dialogConfig.data = { firebasePath: this.firebasePath };
     this.dialog.open(PasswordDialogComponent, dialogConfig);

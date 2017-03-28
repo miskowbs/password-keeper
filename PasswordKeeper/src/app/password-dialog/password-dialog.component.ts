@@ -6,6 +6,7 @@ import * as firebase from 'firebase';
 
 interface DialogData {
   firebasePath: string;
+  password?: Password;
 }
 @Component({
   selector: 'app-password-dialog',
@@ -15,12 +16,17 @@ interface DialogData {
 export class PasswordDialogComponent implements OnInit {
   formPassword: Password;
   firebasePath: string;
+  private passwordKey: string;
 
   constructor(private dialogRef: MdDialogRef<PasswordDialogComponent>) {
     var data: DialogData = this.dialogRef.config.data;
     this.firebasePath = data.firebasePath;
     console.log("Received the data", data);
     this.formPassword = new Password();
+    if (data.password) {
+      Object.assign(this.formPassword, data.password);
+      this.passwordKey = data.password.$key;
+    }
   }
 
   ngOnInit() {
@@ -28,9 +34,16 @@ export class PasswordDialogComponent implements OnInit {
 
   onSubmit() {
     try {
-      firebase.database().ref().child(this.firebasePath).push(this.formPassword);
+      if (this.passwordKey) {
+        firebase.database()
+          .ref()
+          .child(this.firebasePath)
+          .child(this.passwordKey)
+          .set(this.formPassword);
+      } else {
+        firebase.database().ref().child(this.firebasePath).push(this.formPassword);
+      }
       this.dialogRef.close();
-
     } catch (e) {
       console.log("Error while submiting form", e);
     }
